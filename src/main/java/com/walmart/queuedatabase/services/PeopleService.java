@@ -29,4 +29,8 @@ public class PeopleService {
     public void savePersontoDb(People person){
         peopleDao.save(person);
     }
+
+    public void deletePersonFromDb(String personid){
+        peopleDao.deleteById(personid);
+    }
 }

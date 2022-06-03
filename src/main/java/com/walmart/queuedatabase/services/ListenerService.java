@@ -1,5 +1,7 @@
 package com.walmart.queuedatabase.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.jms.JMSObjectMessage;
 import com.walmart.queuedatabase.model.People;
 import com.walmart.queuedatabase.model.PeopleModel;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.ObjectMessage;
+import javax.jms.TextMessage;
 import java.io.*;
 
 @Service
@@ -24,9 +27,13 @@ public class ListenerService {
     private JmsTemplate jmsTemplate;
 
     @JmsListener(destination = "INPUT")
-    public void listen(Message message) throws JMSException {
-        ObjectMessage objectMessage = (ObjectMessage) message;
-        System.out.println(objectMessage);
+    public void listen(Message message) throws JMSException, JsonProcessingException {
+        TextMessage textMessage = (TextMessage) message;
+        String personString = textMessage.getText();
+        ObjectMapper mapper = new ObjectMapper();
+        People person = mapper.readValue(personString, People.class);
+
+        System.out.println(person);
     }
 
     public Object cloneObject(Object originalObject) {
@@ -40,7 +47,6 @@ public class ListenerService {
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
             clonedObject = objectInputStream.readObject();
         } catch (IOException ioe) {
-
             ioe.printStackTrace();
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();

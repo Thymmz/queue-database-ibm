@@ -268,3 +268,12 @@ null
 ACTION:
 null
 --------------------------------------------------------------------
+June 3, 2022 at 8:56:31 AM CDT[org.springframework.jms.JmsListenerEndpointContainer#0-1] com.ibm.msg.client.commonservices.util.SerializationValidator
+No Allow list functionality enabled - either the properties were not set, or the security permissions prevent them being read
+
+EXPLANATION:
+null
+
+ACTION:
+null
+--------------------------------------------------------------------

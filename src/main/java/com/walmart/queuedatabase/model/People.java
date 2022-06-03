@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class People implements Serializable {
     @Id
     @Column(name = "person_ID")
-    private String person_ID;
+    private String personid;
 
     @Column(name = "name")
     private String name;

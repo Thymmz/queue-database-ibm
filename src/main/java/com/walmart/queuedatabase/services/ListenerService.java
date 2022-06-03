@@ -32,8 +32,7 @@ public class ListenerService {
         String personString = textMessage.getText();
         ObjectMapper mapper = new ObjectMapper();
         People person = mapper.readValue(personString, People.class);
-
-        System.out.println(person);
+        peopleService.savePersontoDb(person);
     }
 
     public Object cloneObject(Object originalObject) {

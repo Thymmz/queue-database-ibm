@@ -15,7 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class People implements Serializable {
     @Id
-    @Column(name = "person_ID")
+    @Column(name = "personid")
     private String personid;
 
     @Column(name = "name")

@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PeopleDao extends JpaRepository<People, String> {
-    //People getPeopleByPersonid(String personID);
 }

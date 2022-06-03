@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PeopleService {
@@ -17,11 +18,15 @@ public class PeopleService {
         this.peopleDao = peopleDao;
     }
 
-//    public People getPersonById(String personID){
-//        return peopleDao.getPeopleByPersonid(personID);
-//    }
+    public Optional<People> getPersonById(String personid){
+        return peopleDao.findById(personid);
+    }
 
     public List<People> getAllPeople(){
         return peopleDao.findAll();
+    }
+
+    public void savePersontoDb(People person){
+        peopleDao.save(person);
     }
 }

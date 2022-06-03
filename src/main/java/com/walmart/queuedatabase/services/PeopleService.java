@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PeopleService {
@@ -18,8 +17,8 @@ public class PeopleService {
         this.peopleDao = peopleDao;
     }
 
-    public Optional<People> getPersonById(String personid){
-        return peopleDao.findById(personid);
+    public People getPersonById(String personid){
+        return peopleDao.findById(personid).orElseThrow(()-> new RuntimeException("Person not found with id :" + personid));
     }
 
     public List<People> getAllPeople(){
@@ -31,6 +30,11 @@ public class PeopleService {
     }
 
     public void deletePersonFromDb(String personid){
-        peopleDao.deleteById(personid);
+        People person = peopleDao.findById(personid).orElseThrow(()-> new RuntimeException("Person not found with id :" + personid));
+        peopleDao.delete(person);
+    }
+
+    public void clearDb(){
+        peopleDao.deleteAll();
     }
 }

@@ -20,7 +20,7 @@ public class PeopleController {
     }
 
     @GetMapping("/{personid}")
-    public Optional<People> getPersonbyId(@PathVariable("personid") String personid){
+    public People getPersonbyId(@PathVariable("personid") String personid){
         return peopleService.getPersonById(personid);
     }
 
@@ -32,6 +32,11 @@ public class PeopleController {
     @DeleteMapping("/{personid}")
     public void deletePerson(@PathVariable("personid") String personid){
         peopleService.deletePersonFromDb(personid);
+    }
+
+    @DeleteMapping()
+    public void clearDb(){
+        peopleService.clearDb();
     }
 }
 
